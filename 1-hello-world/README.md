@@ -12,7 +12,7 @@ In later tutorials, we'll build out this basic Zetta project with more functiona
 
 ## Before you begin
 
-To complete this tutorial, you must have Node.js installed on your system. We assume you understand the basics of Node.js and can create and run simple Node.js programs. See **About the Zetta Tutorials** for details. 
+To complete this tutorial, you must have Node.js installed on your system. We assume you understand the basics of Node.js and can create and run simple Node.js programs. See [About the Zetta Tutorials](https://github.com/WWitman/zettajs-tutorials/blob/master/README.md) for details. 
 
 ## Create the Zetta project
 
