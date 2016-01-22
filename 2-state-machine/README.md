@@ -299,62 +299,28 @@ Here we can discover what actions the actual device is capable of performing. Th
 ```json
 {
   "class": [
-    "server"
+    "device",
+    "state_machine"
   ],
   "properties": {
-    "name": "State Machine Server"
+    "id": "7cbf5759-4106-4985-83aa-e970fe13490d",
+    "name": "State Machine Device",
+    "type": "state_machine",
+    "state": "on"
   },
-  "entities": [
-    {
-      "class": [
-        "device",
-        "state_machine"
-      ],
-      "rel": [
-        "http://rels.zettajs.io/device"
-      ],
-      "properties": {
-        "id": "7cbf5759-4106-4985-83aa-e970fe13490d",
-        "type": "state_machine",
-        "name": "State Machine Device",
-        "state": "off"
-      },
-      "links": [
-        {
-          "rel": [
-            "self",
-            "edit"
-          ],
-          "href": "http://127.0.0.1:1337/servers/State%20Machine%20Server/devices/7cbf5759-4106-4985-83aa-e970fe13490d"
-        },
-        {
-          "rel": [
-            "http://rels.zettajs.io/type",
-            "describedby"
-          ],
-          "href": "http://127.0.0.1:1337/servers/State%20Machine%20Server/meta/state_machine"
-        },
-        {
-          "title": "State Machine Server",
-          "rel": [
-            "up",
-            "http://rels.zettajs.io/server"
-          ],
-          "href": "http://127.0.0.1:1337/servers/State%20Machine%20Server"
-        }
-      ]
-    }
-  ],
   "actions": [
     {
-      "name": "query-devices",
-      "method": "GET",
-      "href": "http://127.0.0.1:1337/servers/State%20Machine%20Server",
-      "type": "application/x-www-form-urlencoded",
+      "class": [
+        "transition"
+      ],
+      "name": "turn-off",
+      "method": "POST",
+      "href": "http://127.0.0.1:1337/servers/State%20Machine%20Server/devices/7cbf5759-4106-4985-83aa-e970fe13490d",
       "fields": [
         {
-          "name": "ql",
-          "type": "text"
+          "name": "action",
+          "type": "hidden",
+          "value": "turn-off"
         }
       ]
     }
@@ -362,116 +328,49 @@ Here we can discover what actions the actual device is capable of performing. Th
   "links": [
     {
       "rel": [
-        "self"
+        "self",
+        "edit"
+      ],
+      "href": "http://127.0.0.1:1337/servers/State%20Machine%20Server/devices/7cbf5759-4106-4985-83aa-e970fe13490d"
+    },
+    {
+      "title": "State Machine Server",
+      "rel": [
+        "up",
+        "http://rels.zettajs.io/server"
       ],
       "href": "http://127.0.0.1:1337/servers/State%20Machine%20Server"
     },
     {
       "rel": [
-        "http://rels.zettajs.io/metadata"
+        "http://rels.zettajs.io/type",
+        "describedby"
       ],
-      "href": "http://127.0.0.1:1337/servers/State%20Machine%20Server/meta"
+      "href": "http://127.0.0.1:1337/servers/State%20Machine%20Server/meta/state_machine"
     },
     {
+      "title": "state",
       "rel": [
-        "monitor"
+        "monitor",
+        "http://rels.zettajs.io/object-stream"
       ],
-      "href": "ws://127.0.0.1:1337/servers/State%20Machine%20Server/events?topic=logs"
+      "href": "ws://127.0.0.1:1337/servers/State%20Machine%20Server/events?topic=state_machine%2F7cbf5759-4106-4985-83aa-e970fe13490d%2Fstate"
+    },
+    {
+      "title": "logs",
+      "rel": [
+        "monitor",
+        "http://rels.zettajs.io/object-stream"
+      ],
+      "href": "ws://127.0.0.1:1337/servers/State%20Machine%20Server/events?topic=state_machine%2F7cbf5759-4106-4985-83aa-e970fe13490d%2Flogs"
     }
   ]
 }
-
 ```
 
 ## Change the device state
 
 The transition action includes an `href` link. The link is an HTTP POST command that you can use to change the machine's state. To "turn the machine on", you simply form the correct POST request. 
-
-```json
-{
-  "class": [
-    "server"
-  ],
-  "properties": {
-    "name": "State Machine Server"
-  },
-  "entities": [
-    {
-      "class": [
-        "device",
-        "state_machine"
-      ],
-      "rel": [
-        "http://rels.zettajs.io/device"
-      ],
-      "properties": {
-        "id": "7cbf5759-4106-4985-83aa-e970fe13490d",
-        "type": "state_machine",
-        "name": "State Machine Device",
-        "state": "off"
-      },
-      "links": [
-        {
-          "rel": [
-            "self",
-            "edit"
-          ],
-          "href": "http://127.0.0.1:1337/servers/State%20Machine%20Server/devices/7cbf5759-4106-4985-83aa-e970fe13490d"
-        },
-        {
-          "rel": [
-            "http://rels.zettajs.io/type",
-            "describedby"
-          ],
-          "href": "http://127.0.0.1:1337/servers/State%20Machine%20Server/meta/state_machine"
-        },
-        {
-          "title": "State Machine Server",
-          "rel": [
-            "up",
-            "http://rels.zettajs.io/server"
-          ],
-          "href": "http://127.0.0.1:1337/servers/State%20Machine%20Server"
-        }
-      ]
-    }
-  ],
-  "actions": [
-    {
-      "name": "query-devices",
-      "method": "GET",
-      "href": "http://127.0.0.1:1337/servers/State%20Machine%20Server",
-      "type": "application/x-www-form-urlencoded",
-      "fields": [
-        {
-          "name": "ql",
-          "type": "text"
-        }
-      ]
-    }
-  ],
-  "links": [
-    {
-      "rel": [
-        "self"
-      ],
-      "href": "http://127.0.0.1:1337/servers/State%20Machine%20Server"
-    },
-    {
-      "rel": [
-        "http://rels.zettajs.io/metadata"
-      ],
-      "href": "http://127.0.0.1:1337/servers/State%20Machine%20Server/meta"
-    },
-    {
-      "rel": [
-        "monitor"
-      ],
-      "href": "ws://127.0.0.1:1337/servers/State%20Machine%20Server/events?topic=logs"
-    }
-  ]
-}
-```
 
 The POST request to turn on the light looks something like this (you'll need to use the link provided in your own response, which has the correct device ID):
 
