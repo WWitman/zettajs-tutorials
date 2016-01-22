@@ -8,7 +8,7 @@ Welcome to Zetta! In this tutorial, we will build the Zetta version of "Hello, W
 
 In later tutorials, we'll build out this basic Zetta project with more functionality.
 
-[[../images/zetta-server.png]]
+![Zetta Server](https://github.com/WWitman/zettajs-tutorials/blob/master/images/zetta-server.png)
 
 ## Before you begin
 
