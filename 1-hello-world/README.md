@@ -3,10 +3,10 @@
 Welcome to Zetta! In this tutorial, we will build the Zetta version of "Hello, World!". When you finish, you will know how to:
 
 * Create a basic Zetta project 
-* Configure and start the Zetta server running on your laptop
+* Configure and start the Zetta server to run on a hub (your laptop)
 * Call the Zetta device REST API
 
-![Zetta Server](https://github.com/WWitman/zettajs-tutorials/blob/master/images/zetta-laptop.png)
+![Zetta Server](https://github.com/WWitman/zettajs-tutorials/blob/master/images/zetta-hub.png)
 
 In later tutorials, we'll build out this basic Zetta project with more functionality.
 
