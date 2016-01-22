@@ -1,5 +1,3 @@
-
-
 ## Zetta Tutorial 1: Hello World
 
 Welcome to Zetta! In this tutorial, we will build the Zetta version of "Hello, World!". When you finish, you will know how to:
