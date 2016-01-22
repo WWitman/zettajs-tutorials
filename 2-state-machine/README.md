@@ -3,11 +3,11 @@
 
 In the first Zetta tutorial, we set up a Zetta project, configured a Zetta server, and called its API.
 
-In this tutorial, we'll create a simple Zetta driver that models a state machine. When you complete this tutorial, you will know how to:
+In this tutorial, we'll create a simple Zetta device that models a state machine. When you complete this tutorial, you will know how to:
 
-* Create a Zetta driver
-* Configure the Zetta server to discover the driver
-* Use the Zetta API to toggle the state of the driver on and off
+* Create a Zetta device
+* Configure the Zetta server to discover the device
+* Use the Zetta API to toggle the state of the device on and off
 
 ![Zetta Server](https://github.com/WWitman/zettajs-tutorials/blob/master/images/zetta-device.png)
 
@@ -16,9 +16,9 @@ In this tutorial, we'll create a simple Zetta driver that models a state machine
 
 To complete this tutorial, you must have Node.js installed on your system. We assume you understand the basics of Node.js and can create and run simple Node.js programs. See [About the Zetta Tutorials](https://github.com/WWitman/zettajs-tutorials/blob/master/README.md) for details. 
 
-## What is a Zetta driver
+## What is a Zetta device
 
-In Zetta, a driver is software that models the behavior of a physical device. In this example, the driver models a simple state machine. Through the Zetta APIs, you'll be able to switch the state on and off. In later tutorials, we'll apply the same patterns to allow Zetta to interact with physical devices. 
+In Zetta, a device is software that models the behavior of a physical device. In this example, the device models a simple state machine. Through the Zetta APIs, you'll be able to switch the state on and off. In later tutorials, we'll apply the same patterns to allow Zetta to interact with physical devices. 
 
 ## About the state machine
 
