@@ -9,7 +9,7 @@ In this tutorial, we'll create a simple Zetta driver that models a state machine
 * Configure the Zetta server to discover the driver
 * Use the Zetta API to toggle the state of the driver on and off
 
-![Zetta Server](https://github.com/WWitman/zettajs-tutorials/blob/master/images/zetta-hub.png)
+![Zetta Server](https://github.com/WWitman/zettajs-tutorials/blob/master/images/zetta-device.png)
 
 
 ## Before you begin
