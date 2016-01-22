@@ -6,7 +6,9 @@ Welcome to Zetta! In this tutorial, we will build the Zetta version of "Hello, W
 * Configure and start the Zetta server
 * Call the Zetta device REST API
 
-In later tutorials, we'll build out this basic Zetta project with more functionality. 
+In later tutorials, we'll build out this basic Zetta project with more functionality.
+
+[[../images/zetta-server.png]]
 
 ## Before you begin
 
