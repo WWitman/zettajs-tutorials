@@ -54,7 +54,8 @@ We're going to begin by copying the completed code from the second tutorial to a
 
 You may have noticed in the output that a scout discovered a device:
 
-```Jan-22-2016 15:34:18 [scout] Device (state_machine) 7cbf5759-4106-4985-83aa-e970fe13490d was discovered
+```
+Jan-22-2016 15:34:18 [scout] Device (state_machine) 7cbf5759-4106-4985-83aa-e970fe13490d was discovered
 ```
 
 This is because Zetta has a default, built-in Scout. It's designed to find devices that are registered with the server. But the built-in Scout is limited. There's much, much more you can do by building your own Scouts. That's why it's important to learn to develop your own Scouts.
