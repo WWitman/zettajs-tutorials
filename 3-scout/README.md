@@ -1,30 +1,28 @@
 ## Introduction
 
-In the last Zetta tutorial, created a simple Zetta state machine device.
+In the last Zetta tutorial, created a simple Zetta state machine device. In this tutorial, we'll introduce you to the Scout class and write a simple Scout. 
 
-In this tutorial, we'll refactor the state machine project to use a Scout. When you complete this tutorial, you will know how to:
+When you complete this tutorial, you will know how to:
 
 * Write a simple Scout module
-* Use the Scout to discover multiple devices attached to a hub
+* Use the Scout to discover multiple devices 
+* Use the Zetta browser to interact with devices
 
 ![Zetta Server](https://github.com/WWitman/zettajs-tutorials/blob/master/images/zetta-scout.png)
 
 ## What is a Scout?
 
-A Scout is a Zetta module that finds devices connected to a Zetta server. When the Zetta server starts up, it's possible that not all of its devices are online. A scout runs in the background, constantly searching for devices, and reporting when they are available. 
+A Scout is a Zetta module that finds devices connected to a Zetta server. When the Zetta server starts up, it's possible that not all of its devices are online. A Scout runs perpetually in the background, constantly searching for devices, and discovering when they are available. 
 
-Say a device has a wireless protocol -- zetta should make this easy. Bluetooth, Zigby, HTTP. Functions as a radar. 
-
-Run perpetually on the server. 
-
+Zetta makes it easy to create Scouts that discover devices that communicate over a variety of protocols, such as Bluetooth, Zigby, or plain old HTTP. 
 
 ## Before you begin
 
-To complete this tutorial, you must have Node.js installed on your system. We assume you understand the basics of Node.js and can create and run simple Node.js programs. See [About the Zetta Tutorials](https://github.com/WWitman/zettajs-tutorials/blob/master/README.md) for details. 
+This tutorial builds on the previous tutorial. So, the best approach is to finish `2-state-machine` first, then jump to this tutorial.  
 
 ## Set up the project
 
-We're going to begin by copying the completed code from the second tutorial to a new project. 
+We're going to begin by copying the completed code from the second tutorial to a new project, and then we'll proceed to modify that code.
 
 1. Create a project directory. You can name it anything you wish. In this tutorial, we'll call it `2-scout`. 
 
@@ -39,35 +37,31 @@ We're going to begin by copying the completed code from the second tutorial to a
 
 ## Test the server
 
-1. In an editor, open `index.js` and change the name of the server from `State Machine Server` to `Scout Tutorial Server`. 
+1. Start the server, same as you did in the previous tutorial:
 
-2. Save the file. 
+  `node index.js`
 
-3. Start the server:
+  Be sure you see the same output in the terminal window as you did before. 
 
-`node index.js`
-
-You'll see output like the following. The output confirms that the server is running on port 1337 and tells you the name of the server (Scout Tutorial Server).
-
-```
-Jan-22-2016 15:34:18 [scout] Device (state_machine) 7cbf5759-4106-4985-83aa-e970fe13490d was discovered
-Jan-22-2016 15:34:18 [server] Server (Scout Tutorial Server) Scout Tutorial Server listening on http://127.0.0.1:1337
-Zetta is running at http://127.0.0.1:1337
-```
+  ```
+      Jan-22-2016 15:34:18 [scout] Device (state_machine) 7cbf5759-4106-4985-83aa-e970fe13490d was discovered
+      Jan-22-2016 15:34:18 [server] Server (State Machine Server) State Machine Server listening on http://127.0.0.1:1337
+      Zetta is running at http://127.0.0.1:1337
+  ```
 
 
 ## Quick review
 
-You may have noticed from the state machine output that the server output says a scout discovered a device:
+You may have noticed in the output that a scout discovered a device:
 
 ```Jan-22-2016 15:34:18 [scout] Device (state_machine) 7cbf5759-4106-4985-83aa-e970fe13490d was discovered
 ```
 
-This is because Zetta has a default, built-in Scout. It's designed to find devices that are registered with the server. But the built-in Scout is limited. There's much, much more you can do by building your own Scouts.
+This is because Zetta has a default, built-in Scout. It's designed to find devices that are registered with the server. But the built-in Scout is limited. There's much, much more you can do by building your own Scouts. That's why it's important to learn to develop your own Scouts.
 
 ## Begin coding the Scout class
 
-The first thing to do is take a look at the reference documentation for the Zetta Scout class. Writing a Scout class is a lot like writing a Device. You create a JavaScript class that inherits from Scout and write an init() function. 
+The first thing to do is take a look at the [reference documentation](https://github.com/zettajs/zetta/wiki/Scout) for the Zetta Scout class. Writing a Scout class is a lot like writing a Device. You create a JavaScript class that inherits from Scout and write an init() function. 
 
 1. In an editor, create a new file in the `3-scout` directory and call it `scout.js`. 
 
