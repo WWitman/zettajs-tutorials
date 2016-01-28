@@ -12,7 +12,7 @@ When you complete this tutorial, you will know how to:
 
 ## What is a Scout?
 
-A Scout is a Zetta module that finds devices connected to a Zetta server. When the Zetta server starts up, it's possible that not all of its devices are online. A Scout runs perpetually in the background, constantly searching for devices, and discovering when they are available. 
+A Scout is a Zetta class that finds devices connected to a Zetta server. When the Zetta server starts up, it's possible that not all of its devices are online. A Scout runs perpetually in the background, constantly searching for devices, and discovering when they are available. 
 
 Zetta makes it easy to create Scouts that discover devices that communicate over a variety of protocols, such as Bluetooth, Zigby, or plain old HTTP. 
 

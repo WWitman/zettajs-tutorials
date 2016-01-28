@@ -13,9 +13,9 @@ StateMachineScout.prototype.init = function(next) {
     var self = this;
 
     setTimeout(function() {
-    	self.discover(StateMachine);
-    	self.discover(StateMachine);
-    	self.discover(StateMachine);
+    	self.discover(StateMachine, 'machine_1');
+    	self.discover(StateMachine, 'machine_2');
+    	self.discover(StateMachine, 'machine_3');
     }, 1000);
 
     next();
