@@ -198,7 +198,7 @@ State Machine came online: machine_1, machine_2, machine_3
 
 Our goal is to turn all the machines off when one is off, and turn all on when one is turned on. 
 
->The following code is similar to the event emitter pattern in Node.js. In Zetta, state transitions are emitted as Node.js events on objects. So, when we call 'turn-off' on a device object, that transition is emitted as an event that we can capture and use to manipulate other devices. 
+>The following code is similar to the EventEmitter pattern in Node.js. In Zetta, state transitions are emitted as Node.js events on objects. So, when we call 'turn-off' on a device object, that transition is emitted as an event that we can capture and use to manipulate other devices. 
 
 Here is the finished app.js code:
 

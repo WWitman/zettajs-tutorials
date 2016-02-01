@@ -9,14 +9,14 @@ module.exports = function(server) {
 	server.observe([StateMachine_1_Query, StateMachine_2_Query, StateMachine_3_Query], function(machine_1, machine_2, machine_3) {
 		console.log("State Machine came online: " + machine_1.name + ", " + machine_2.name + ", " + machine_3.name);
 
-                machine_1.on('turn-off', function() {
-                	machine_2.call('turn-off');
-                	machine_3.call('turn-off');
-                });
+        machine_1.on('turn-off', function() {
+        	machine_2.call('turn-off');
+        	machine_3.call('turn-off');
+        });
 
-                machine_1.on('turn-on', function() {
-                	machine_2.call('turn-on');
-                	machine_3.call('turn-on');
-                });
+        machine_1.on('turn-on', function() {
+        	machine_2.call('turn-on');
+        	machine_3.call('turn-on');
+        });
 	});
 }
