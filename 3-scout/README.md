@@ -24,7 +24,7 @@ This tutorial builds on the previous tutorial. So, the best approach is to finis
 
 We're going to begin by copying the completed code from the second tutorial to a new project, and then we'll proceed to modify that code.
 
-1. Create a project directory. You can name it anything you wish. In this tutorial, we'll call it `2-scout`. 
+1. Create a project directory. You can name it anything you wish. In this tutorial, we'll call it `3-scout`. 
 
 2. cd to the directory.
 
