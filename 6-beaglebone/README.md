@@ -133,7 +133,7 @@ Now, we'll create a new JavaScript file for our Device class code.
       config
         .type('beaglebone_led')
         .state('off')
-        .name("BeagleBone LED Device");
+        .name("BeagleBone LED Device: " + this.assignedPin);
 
       // Define the transitions allowed by the state machine
       config
@@ -196,7 +196,7 @@ Now, we need to make the Zetta server aware of the device. This pattern should b
 
     `node index.js`
 
-2. The server output should look like this. Notice the output has some new information that we didn't see before -- the State Machine device we added to the server was discovered by something called a "scout". We'll discuss scouts in detail in the next tutorial. For now, just note that the device was discovered. This means that Zetta found the device and has generated APIs for it. 
+2. The server output should look like this. Note that the `beaglebone_led` device was discovered. This means that Zetta found the device and has generated APIs for it. 
 
     ```
     node index.js
@@ -204,7 +204,6 @@ Now, we need to make the Zetta server aware of the device. This pattern should b
     Jan-22-2016 15:34:18 [server] Server (Zetta Server on BeagleBone Hub)) Zetta Server on BeagleBone Hub) listening on http://127.0.0.1:1337
     Zetta is running at http://127.0.0.1:1337
     ```
-
 
 
 ## Use the Zetta Browser to interact with the new device
@@ -219,11 +218,13 @@ In the UI, toggle the **beaglebone_led** on and off.
 
 >Behind the scenes, this browser client is interacting directly with the Zetta REST APIs that we saw in the last tutorial. You can access the API directly using a REST client or cURL. 
 
-`curl http:%2F%2Fbeaglebone.local:1337`
+    `curl http:%2F%2Fbeaglebone.local:1337`
 
 ## Summary
 
-In this topic, we coded a Zetta project to generate an API that lets us interact with an LED attached to a BeagleBone Black embedded Linux device.  In the next tutorial, we'll take this example a step further, and write a custom Scout to discover the device when it is online. 
+In this topic, we coded a Zetta project to generate an API that lets us interact with an LED on a BeagleBone Black embedded Linux device.  
+
+In the next tutorial, we'll take this example a step further, and write a custom Scout to discover the device when it is online and write an app to wire up interactions between multiple LEDs.  
 
 
 
