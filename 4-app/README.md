@@ -8,7 +8,7 @@ When you complete this tutorial, you will know how to:
 * Use the app to coordinate interaction between devices 
 * Use the Zetta browser to test the app
 
-![Zetta Server](https://github.com/WWitman/zettajs-tutorials/blob/master/images/zetta-scout.png)
+![Zetta Server](https://github.com/WWitman/zettajs-tutorials/blob/master/images/zetta-app.png)
 
 
 ## Before you begin
