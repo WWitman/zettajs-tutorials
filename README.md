@@ -1,21 +1,22 @@
-## About the Zetta tutorials
+## Welcome to the Zetta tutorials
 
-### How to use the tutorials
+![Zetta logo](http://www.zettajs.org/images/logos/zetta-logo.png)
 
-The Zetta tutorials and complete source code for each tutorial are in GitHub. To get started, we recommend you clone or download the zettajs-tutorials repository. 
+Zetta is an API-first platform for the Internet of Things (IoT). Zetta is an elegant, open-source platform for wiring all types of devices to the internet using APIs. For more information, see the [Introduction to Zetta](https://github.com/zettajs/zetta/wiki/Overview).
 
-Each tutorial project follows this basic structure, where the text of the tutorial is in the README:
+### About the tutorials
 
-```
-/zettajs-tutorials/<name>
-    - README.md
-    - ./device.js
-    - ./scout.js
-    - ./index.js
-    - ./package.json
-```
+The Zetta tutorials progress from a very basic "Hello, World!" example through more complicated projects. 
 
-### Install Node.js and npm
+After you complete the tutorials, you'll be comfortable with the Zetta platform and its Node.js programming paradigm. You'll generate APIs for devices that you can control from anywhere in the world on the Internet.
+
+The tutorials are easy to follow, and can be completed in a fairly short time. Both the tutorial instructions and working source code are available on GitHub. 
+
+### How to get started
+
+The best way to get started is to go to the first tutorial, code the "Hello, World!" example, and try it out!
+
+### You need Node.js
 
 You need to have Node.js and NPM (Node Package Manager) installed on your system. If you do not have this software, follow these steps:
 
@@ -31,3 +32,6 @@ Verify that the `node` and `npm` commands are in your path:
     <installed version number>
 ```
 
+### About the BeagleBone projects
+
+Some of the more advanced projects require a BeagleBone Black device. This is an embedded Linux device that comes with a Node.js programming interface. This interface makes it easy to code Zetta projects to interact with the BeagleBone. The devices are fairly cheap and easy to obtain. For more information, go to the [BeagleBone website](http://beagleboard.org/).
