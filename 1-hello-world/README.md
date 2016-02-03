@@ -108,7 +108,7 @@ If you have cURL installed, you can do this:
 
 The Zetta server returns a JSON object (shown below) that describes the **root** class of the API. The response describes the current state of the Zetta API and includes links to resources provided by the API (we'll explore these links in the next section). 
 
-At this point, our API doesn't do much, but as we start adding devices to the server, the API will expand to support those devices. For example, in the next tutorial, we'll create a device that lets us turn an LED on and off by calling Zetta APIs. 
+At this point, our API doesn't do much, but as we start adding devices to the server, the API will expand to support those devices. For example, in the next tutorial, we'll create a device that lets us turn a virtual switch on and off by calling Zetta APIs. 
 
 ```json
 {
