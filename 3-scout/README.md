@@ -137,7 +137,7 @@ The first thing to do is take a look at the [reference documentation](https://gi
     Jan-27-2016 12:28:28 [scout] Device (state_machine) 7983819f-59e8-4b5c-a9cc-bcfe73d72c8b was discovered
     ```
 
->Notice the output has some new information that we didn't see before -- the State Machine device we added to the server was discovered by something called a "scout". We'll discuss scouts in detail in another topic. For now, just note that the device was discovered. This means that Zetta found the device and has generated APIs for it.
+>Notice that the scout discovered the device.
 
 ## Modify the Scout to find multiple Devices
 
