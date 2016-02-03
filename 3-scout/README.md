@@ -85,7 +85,7 @@ The first thing to do is take a look at the [reference documentation](https://gi
 
 4. Next, we'll implement the `init()` function. You need to add code to this function that "listens" for a device. When the device shows up as ready, you call the `discover()` function and pass in the Device object. 
 
->In this simple Scout, we're faking the discovery process with a setTimeout function, which executes the discover() method after one second. In a real situation, you'd put code in init() that is capable of finding and interacting with actual devices on your network. 
+>In this simple Scout, we're faking the discovery process with a setTimeout function, which executes the discover() method after one second. In a real situation, you'd put code in init() that is capable of finding and interacting with actual devices on your network. We'll see an example of this later in the BeagleBone tutorials. 
 
 ```
    StateMachineScout.prototype.init = function(next) {
