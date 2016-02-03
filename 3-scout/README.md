@@ -4,7 +4,7 @@ In the last Zetta tutorial, created a simple Zetta state machine device. In this
 
 When you complete this tutorial, you will know how to:
 
-* Write a simple Scout module
+* Write a simple Scout class
 * Use the Scout to discover multiple devices 
 * Use the Zetta browser to interact with devices
 
