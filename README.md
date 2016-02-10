@@ -10,7 +10,7 @@ The Zetta tutorials progress from a very basic "Hello, World!" example through m
 
 After you complete the tutorials, you'll be comfortable with the Zetta platform and its Node.js programming paradigm. You'll generate APIs for devices that you can control from anywhere in the world on the Internet.
 
-The tutorials are easy to follow, and can be completed in a fairly short time. Both the tutorial instructions and working source code are available on GitHub. 
+The tutorials are easy to follow, and can be completed in a fairly short time. Both the tutorial instructions and working source code are available in this GitHub repository. 
 
 ### How to get started
 
