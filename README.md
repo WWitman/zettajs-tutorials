@@ -2,13 +2,13 @@
 
 ![Zetta logo](http://www.zettajs.org/images/logos/zetta-logo.png)
 
-Zetta is an API-first platform for the Internet of Things (IoT). Zetta is an elegant, open-source platform for wiring all types of devices to the internet using APIs. For more information, see the [Introduction to Zetta](https://github.com/zettajs/zetta/wiki/Overview).
+Zetta is an API-first platform for the Internet of Things (IoT). Zetta is an elegant, open-source platform for connecting all types of devices to the internet using APIs. For more information, see the [Introduction to Zetta](https://github.com/zettajs/zetta/wiki/Overview).
 
 ### About the tutorials
 
 The Zetta tutorials progress from a very basic "Hello, World!" example through more complicated projects. 
 
-After you complete the tutorials, you'll be comfortable with the Zetta platform and its Node.js programming paradigm. You'll generate APIs for devices that you can control from anywhere in the world on the Internet.
+After you complete the tutorials, you'll be comfortable with the Zetta platform and its Node.js programming paradigm. You'll generate APIs for devices that you can control from anywhere in the world through the Internet.
 
 The tutorials are easy to follow, and can be completed in a fairly short time. Both the tutorial instructions and working source code are available in this GitHub repository. 
 
@@ -34,4 +34,4 @@ Verify that the `node` and `npm` commands are in your path:
 
 ### About the BeagleBone projects
 
-Some of the more advanced projects require a BeagleBone Black device. This is an embedded Linux device that comes with a Node.js programming interface. This interface makes it easy to code Zetta projects to interact with the BeagleBone. The devices are fairly cheap and easy to obtain. For more information, go to the [BeagleBone website](http://beagleboard.org/).
+Some of the more advanced projects require a BeagleBone Black device. This is an embedded Linux device that comes with a Node.js programming interface. This interface makes it easy to code Zetta projects to interact with the BeagleBone. The devices are fairly cheap and easy to obtain. For more information, go to the [BeagleBone Black website](http://beagleboard.org/black).

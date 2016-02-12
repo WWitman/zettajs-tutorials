@@ -1,12 +1,12 @@
 ## Introduction
 
-Up to now, we've used Zetta to generate APIs for "fake" devices -- essentially, state machines that exist in memory only.
+Up to now, you have used Zetta to generate APIs for "fake" devices -- essentially, state machines that exist in memory only.
 
-In this tutorial, we'll show you how to use Zetta to turn a physical LED attached to a [BeagleBone Black](http://beagleboard.org/black) on and off. It's pretty simple, and most of the code will be nearly identical to the state machine code you wrote in the previous tutorials. 
+In this tutorial, you will use Zetta to turn a physical LED attached to a [BeagleBone Black](http://beagleboard.org/black) on and off. It's pretty simple to do, and most of the code will be nearly identical to the state machine code you wrote in the previous tutorials. 
 
 When you complete this tutorial, you will know how to:
 
-* Write a Device class turns an LED attached to a BeagleBone Black on and off
+* Write a Device class that turns an LED attached to a BeagleBone Black on and off
 * Use BeagleBone-specific Node.js module called BoneScript
 * Use the Zetta browser to test the code
 
@@ -14,16 +14,15 @@ When you complete this tutorial, you will know how to:
 
 ## Prerequisites for this tutorial
 
-To run the code in this tutorial, you must have a BeagleBone Black device running and configured with your laptop or on your network. We use the built-in Cloud9 IDE for BeagleBone to develop the project. BoneScript is also built-in to the BeagleBone, so there's no need for you to do `npm install` to get the BoneScript module. 
+To run the code in this tutorial, you must have a [BeagleBone Black](http://beagleboard.org/BLACK) device running and configured with your laptop or on your network. We use the built-in Cloud9 IDE for BeagleBone to develop the project. BoneScript is also built-in to the BeagleBone, so there's no need for you to do `npm install` to get the BoneScript module. 
 
 ![Zetta Server](https://github.com/WWitman/zettajs-tutorials/blob/master/images/cloud9.png)
 
-This tutorial we're going to keep things simple and blink one of the on-board LEDs on the BeagleBone. In the next tutorial, we'll work with multiple external LEDs. 
+In this tutorial, you will blink one of the on-board LEDs on the BeagleBone. In the next tutorial, you will work with multiple external devices. 
 
-You can find complete instructions for setting up these projects on the BeagleBoard website. It's a good idea to set up and test out the example projects before integrating the code with Zetta. 
+You can find complete instructions for setting up this project on the BeagleBoard website. It's a good idea to set up and test out the example projects before integrating the code with Zetta. 
 
 * [Blink an on-board LED](http://beagleboard.org/Support/BoneScript/demo_blinkled/)
-* [Blink an external LED](http://beagleboard.org/Support/BoneScript/demo_blinkled_external/)
 
 As with all Zetta projects, this one gives you a REST API that you can use to interact with the device over the internet: blink an on-board LED on and off. 
 
@@ -33,31 +32,30 @@ We're going to set up and run this project on the BeagleBone itself. To do this,
 
 1. Open the [Cloud9 IDE](http://beagleboard.org/Support/bone101/#cloud9) or a remote login shell on the BeagleBone device. 
 
-1. Create a project directory on the BeagleBone. You can name it anything you wish. In this tutorial, we'll call it `6-beaglebone`. 
+1. Create a project directory on the BeagleBone called: `beaglebone`. 
 
-2. Change directory to `6-beaglebone`. 
+2. Change directory to `beaglebone` and do these steps:
 
-3. Execute this command to create a new Node.js project: 
+    a. Execute this command to create a new Node.js project: 
 
     `npm init`
 
-4. Hit return several times to accept all the defaults. This step creates a `package.json` file, which contains meta information about the project and its dependencies. 
+    b. Hit return several times to accept all the defaults. This step creates a `package.json` file, which contains meta information about the project and its dependencies. 
 
-5. Install the `zetta` Node.js module. The `--save` option adds `zetta` to the `package.json` dependencies list. 
+    c. Install the `zetta` Node.js module. The `--save` option adds `zetta` to the `package.json` dependencies list. 
 
     `npm install zetta --save`
 
-You now have a bare-bones Zetta project containing a `node_modules` directory and a `package.json` file. Next, we'll set up the Zetta server.
+You now have a bare-bones Zetta project containing a `node_modules` directory and a `package.json` file. Next, you will set up the Zetta server.
 
 
 ## Set up the Zetta server
 
-Let's set up the Zetta server and run it locally. 
+Set up the Zetta server and run it locally. 
 
 1. If the Zetta server is still running (from when you tried the last tutorial), stop the server with `Control-c`. 
-2. Be sure you're in the `6-beaglebone` directory.
 
-3. In a text editor, create a new file called `index.js`, and copy this code into it:
+2. In the `beaglebone` directory create a new file called `index.js`, and copy this code into it:
 
   ```js
   var zetta = require('zetta');
@@ -69,52 +67,52 @@ Let's set up the Zetta server and run it locally.
   });
   ```
 
-
 4. Save the file.
 
 You now have a minimally configured Zetta server. 
 
 ## Test the server
 
-In the `6-beaglebone` directory, enter this command: 
+In the `beaglebone` directory, enter this command to make sure there are no errors in the server code:
 
 `node index.js`
 
-You'll see output like the following. The output confirms that the server is running on port 1337 and tells you the name of the server (Zetta Server).
+You'll see output like the following. 
 
 ```
 Feb-01-2016 15:18:36 [server] Server (Zetta Server on BeagleBone Hub) Zetta Server on BeagleBone Hub listening on http://127.0.0.1:1337
 Zetta is running at http://127.0.0.1:1337
 ```
 
+The output confirms that the server is running on port 1337 and tells you the name of the server (Zetta Server).
 
 ## About the Device class
 
-For this simple example, we'll create a basic Device class. The code will be almost identical to the `2-state-machine` tutorial. In the next tutorial, we'll implement a Scout. But for now, we'll only implement a Device. 
+For this simple example, you will create a basic Device class. The code will be almost identical to the `state-machine` tutorial. 
 
-In our Device, we'll define state tranisitions, and map them to JavaScript methods, much like we did with the state machine tutorials.  
+In the Device class, you will define state tranisitions, and map them to JavaScript methods, much like you did with the state machine tutorials.  
 
-To communicate with the BeagleBone board via JavaScript, we'll require the [BoneScript](http://beagleboard.org/Support/BoneScript/) Node.js library. BoneScript lets you interact with pins on the board, change their states, and so on. 
+To communicate with the BeagleBone board via JavaScript, you must require the [BoneScript](http://beagleboard.org/Support/BoneScript/) Node.js library. BoneScript lets you interact with pins on the board, change their states, and so on. 
 
 ## Implement the Device
 
-Now, we'll create a new JavaScript file for our Device class code.
+In this section, you will implement the Device class that enables Zetta to talk to the BeagleBone Black device. 
 
-1. If you're not there, change directory to the `6-beaglebone` directory. 
-2. Create a new file device.js:
+1. If you're not there, change directory to the `beaglebone` directory. 
 
-    `touch device.js`
+2. Create a new file `device.js` and follow these steps:
 
-3. Open the file in an editor.
-4. Require these libraries:
+    a. Open the file in an editor.
+
+    b. Require these libraries:
 
     ```
-      var Device = require('zetta').Device;
-      var util = require('util');
-      var bone = require('bonescript');
+    var Device = require('zetta').Device;
+    var util = require('util');
+    var bone = require('bonescript');
     ```
 
-5. Here's the Device class constructor. We pass a `pin` property to the constructor. As we'll see, the value of the property is passed as an argument to the `Zetta.use()` function in the Zetta server. 
+    c. Here's the Device class constructor. We pass a `pin` property to the constructor. As you will see, the value of the property is passed as an argument to the `Zetta.use()` function in the Zetta server. 
 
     ```
     var BeagleBoneLedDevice = module.exports = function(pin) {
@@ -124,7 +122,7 @@ Now, we'll create a new JavaScript file for our Device class code.
     util.inherits(BeagleBoneLedDevice, Device);
     ```
 
-6. Implement the `init()` function. Note that up to now, there's no device-specific code. This code is almost the same as the code you wrote in previous tutorials.
+    d. Implement the `init()` function. Note that up until now, there's no device-specific code. This code is almost the same as the code you wrote in previous tutorials.
 
     ```
     BeagleBoneLedDevice.prototype.init = function(config) {
@@ -146,7 +144,7 @@ Now, we'll create a new JavaScript file for our Device class code.
     }
     ```
 
-7. Implement the state machine transition methods. Now, we'll start using the BoneScript library to interact with the device. 
+    e. Implement the state machine transition methods. Now, you will start using the BoneScript library to interact with the device. 
 
     ```
      BeagleBoneLedDevice.prototype.turnOff = function(cb) {
@@ -164,20 +162,20 @@ Now, we'll create a new JavaScript file for our Device class code.
 
 8. Save the device file. 
 
-
 ## Add the device to the server
 
-Now, we need to make the Zetta server aware of the device. This pattern should be familiar to you if you tried the previous tutorials.
+Now, you need to make the Zetta server aware of the device. This pattern should be familiar to you if you tried the previous tutorials.
 
-1. Open the server file, `index.js`. 
-2. Require the device module you just implemented:
+1. Open the server file, `index.js` and make the following changes:
+    
+    a. Require the device module you just implemented:
 
     ```
     var zetta = require('zetta');
     var BeagleBoneLedDevice = require('./device.js');
     ```
 
-3. Call the `use()` method on the Zetta server, as follows. The first argument is the Device class you implemented. The second argument is passed to the device constructor when Zetta instantiates the device. 
+    b. Call the `use()` method on the Zetta server, as follows. The first argument is the Device class you implemented. The second argument is passed to the device constructor when Zetta instantiates the device. 
 
     ```
      zetta()
@@ -190,41 +188,36 @@ Now, we need to make the Zetta server aware of the device. This pattern should b
 
 4. Save the file.
 
-## Test the device
+## Test the project
+
+Now, you can start the Zetta server and test the device using the Zetta browser. 
 
 1. Start the Zetta server: 
 
-    `node index.js`
+  `node index.js`
 
-2. The server output should look like this. Note that the `beaglebone_led` device was discovered. This means that Zetta found the device and has generated APIs for it. 
+2. The server output should look like this: 
 
-    ```
-    node index.js
-    Jan-22-2016 15:34:18 [scout] Device (beaglebone_led) 7cbf5759-4106-4985-83aa-e970fe13490d was discovered
-    Jan-22-2016 15:34:18 [server] Server (Zetta Server on BeagleBone Hub)) Zetta Server on BeagleBone Hub) listening on http://127.0.0.1:1337
-    Zetta is running at http://127.0.0.1:1337
-    ```
+  ```
+  node index.js
+  Jan-22-2016 15:34:18 [scout] Device (beaglebone_led) 7cbf5759-4106-4985-83aa-e970fe13490d was discovered
+  Jan-22-2016 15:34:18 [server] Server (Zetta Server on BeagleBone Hub)) Zetta Server on BeagleBone Hub) listening on http://127.0.0.1:1337
+  Zetta is running at http://127.0.0.1:1337
+  ```
 
+  >Note: The `beaglebone_led` device was discovered. This means that Zetta found the device and has generated APIs for it. 
 
-## Use the Zetta Browser to interact with the new device
+3. Open a browser and enter this URL (assuming your Zetta server is running on the BeagleBone on port 1337):
 
-Open a browser and hit this URL for the Zetta browser (assuming your Zetta server is running on the BeagleBone on port 1337):
+  `http://browser.zettajs.io/#/overview?url=http:%2F%2Fbeaglebone.local:1337`
 
-`http://browser.zettajs.io/#/overview?url=http:%2F%2Fbeaglebone.local:1337`
+4. In the UI, toggle the **beaglebone_led** on and off. 
 
-In the UI, toggle the **beaglebone_led** on and off. 
-
-![Zetta Server](https://github.com/WWitman/zettajs-tutorials/blob/master/images/led-device-browser.png)
-
->Behind the scenes, this browser client is interacting directly with the Zetta REST APIs that we saw in the last tutorial. You can access the API directly using a REST client or cURL. 
-
-    `curl http:%2F%2Fbeaglebone.local:1337`
+  ![Zetta Server](https://github.com/WWitman/zettajs-tutorials/blob/master/images/led-device-browser.png)
 
 ## Summary
 
-In this topic, we coded a Zetta project to generate an API that lets us interact with an LED on a BeagleBone Black embedded Linux device.  
-
-In the next tutorial, we'll take this example a step further, and write a custom Scout to discover the device when it is online and write an app to wire up interactions between multiple LEDs.  
+In this topic, you created a Zetta project that communicates with a BeagleBone Black embedded Linux device. APIs generated by Zetta allow you to interact with the device through the Internet. 
 
 
 

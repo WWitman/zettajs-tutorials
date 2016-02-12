@@ -1,6 +1,6 @@
 ## Zetta Tutorial 1: Hello World
 
-Welcome to Zetta! In this tutorial, we will build the Zetta version of "Hello, World!". When you finish, you will know how to:
+Welcome to Zetta! In this tutorial, you will build the Zetta version of "Hello, World!". When you finish, you will know how to:
 
 * Create a basic Zetta project 
 * Configure and start the Zetta server to run on a hub (your laptop)
@@ -8,7 +8,7 @@ Welcome to Zetta! In this tutorial, we will build the Zetta version of "Hello, W
 
 ![Zetta Server](https://github.com/WWitman/zettajs-tutorials/blob/master/images/zetta-hub.png)
 
-In later tutorials, we'll build out this basic Zetta project with more functionality.
+In later tutorials, you'll build out this basic Zetta project with more functionality.
 
 
 ## Before you begin
@@ -17,22 +17,39 @@ To complete this tutorial, you must have Node.js installed on your system. We as
 
 ## Create the Zetta project
 
-1. Create a project directory. You can name it anything you wish. In this tutorial, we'll call it `1-hello-world`. 
+1. Create a project directory. You can name it anything you wish. In this tutorial, call it `hello-world`. 
 
-2. cd to the directory.
+2. Change to the `hello-world` directory and do the following steps:
 
-3. Execute this command to create a new Node.js project: 
+    a. Execute this command to create a new Node.js project: 
 
-    `npm init`
+      `npm init`
 
-4. Hit return several times to accept all the defaults. This step creates a `package.json` file, which contains meta information about the project and its dependencies. 
+    b. Hit return several times to accept all the defaults. This step creates a `package.json` file, which contains meta information about the project and its dependencies. The `package.json` file should look like this:
 
-5. Install the `zetta` Node.js module. The `--save` option adds `zetta` to the `package.json` dependencies list. 
+    ```
+    {
+      "name": "hello-world",
+      "version": "1.0.0",
+      "description": "Welcome to Zetta! In this tutorial, you will build the Zetta version of \"Hello, World!\". When you finish, you will know how to:",
+      "main": "index.js",
+      "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+      },
+      "author": "",
+      "license": "ISC",
+      "dependencies": {
+        "zetta": "^0.33.0"
+      }
+    }
+    ```
 
-    `npm install zetta --save`
+    c. Install the `zetta` Node.js module. The `--save` option adds `zetta` to the `package.json` dependencies list. 
+
+      `npm install zetta --save`
 
 
-You now have a bare-bones Zetta project containing a `node_modules` directory and a `package.json` file. Next, we'll configure the Zetta server.
+You now have a bare-bones Zetta project containing a `node_modules` directory and a `package.json` file. Next, you'll configure the Zetta server.
 
 ## What is the Zetta server?
 
@@ -42,7 +59,7 @@ The Zetta server communicates and coordinates with physical devices on a network
 
 Let's set up a Zetta server and run it locally. It's easy to do.
 
-1. Be sure you're in the `1-hello-world` directory.
+1. Be sure you're in the `hello-world` directory.
 
 2. In a text editor, create a new file called `index.js`, and copy this code into it:
 
@@ -72,11 +89,11 @@ Let's set up a Zetta server and run it locally. It's easy to do.
 
 4. Save the file.
 
-You now have a minimally configured Zetta server. Next, we'll start the server up and hit its API. 
+You now have a minimally configured Zetta server. Next, you'll start the server up and hit its API. 
 
 ## Start the server
 
-In the `1-hello-world` directory, enter this command: 
+In the `hello-world` directory, enter this command: 
 
 `node index.js`
 
@@ -92,11 +109,11 @@ Zetta is running at http://127.0.0.1:1337
 
 We mentioned before that the Zetta server creates a REST API that you can call over any HTTP client. Let's see how that works.
 
-**Key point:** The Zetta API is a built-in, out-of-the-box feature of Zetta. The Zetta server automatically generates APIs for devices that it recognizes. These APIs let you interact with the devices. In a later tutorial, we'll create an LED device that we can turn on and off using APIs.
+**Key point:** The Zetta API is a built-in, out-of-the-box feature of Zetta. The Zetta server automatically generates APIs for devices that it recognizes. These APIs let you interact with the recognized devices. In a later tutorial, you will create an LED device that you can turn on and off using APIs.
 
->Zetta APIs are RESTful hypermedia APIs. Essentially, this means that each API response includes links that let you discover what further actions you can perform with the API. The pattern is analogous to the way web pages work, where hyperlinks lead you to related web content. 
+>Note: Zetta APIs are RESTful hypermedia APIs. Essentially, this means that each API response includes links that let you discover what further actions you can perform with the API. The pattern is analogous to the way web pages work, where hyperlinks lead you to related web content. 
 
-First, we start by calling the server's root URL, which is:
+First, start by calling the server's root URL, which is:
 
 `http://127.0.0.1:1337`
 
@@ -106,9 +123,9 @@ If you have cURL installed, you can do this:
 
 >Tips: You can use a REST client like Postman or Advanced REST Client to call the URL. It's a good idea to obtain and begin working with these (or similar) tools if you intend to develop Zetta applications. If you use the Chrome browser, you can install a plugin called JSONView, which formats JSON responses nicely. 
 
-The Zetta server returns a JSON object (shown below) that describes the **root** class of the API. The response describes the current state of the Zetta API and includes links to resources provided by the API (we'll explore these links in the next section). 
+The Zetta server returns a JSON object (shown below) that describes the **root** class of the API. The response describes the current state of the Zetta API and includes links to resources provided by the API (you'll explore these links in the next section). 
 
-At this point, our API doesn't do much, but as we start adding devices to the server, the API will expand to support those devices. For example, in the next tutorial, we'll create a device that lets us turn a virtual switch on and off by calling Zetta APIs. 
+At this point, our API doesn't do much, but as you start adding devices to the server, the API will expand to support those devices. For example, in the next tutorial, you'll create a device that lets us turn a virtual switch on and off by calling Zetta APIs. 
 
 ```json
 {
@@ -168,7 +185,7 @@ Try hitting this link:
 
 `http://localhost:1337/servers/Hello%20Zetta`
 
-At this time, no devices are attached to the server. If there were, they'd be listed in the `entities` array. Note, however, the API has a `query-devices` action. In the next tutorial, we'll see how to add a state-machine device to the Zetta server and turn it on and off using APIs. 
+At this time, no devices are attached to the server. If there were, they'd be listed in the `entities` array. Note, however, the API has a `query-devices` action. In the next tutorial, you'll see how to add a state-machine device to the Zetta server and turn it on and off using APIs. 
 
 ```json
 {
@@ -219,5 +236,5 @@ At this time, no devices are attached to the server. If there were, they'd be li
 
 ## Summary
 
-Congratulations! You've configured and run a functioning Zetta server. In the next part of the tutorial, we'll wire up a device driver that implements a simple state device (on/off switch) and control the device using the Zetta API.
+Congratulations! You've configured and run a functioning Zetta server. In the next tutorial, you'll wire up a device driver that implements a simple state device (on/off switch) and control the device using the Zetta API.
 

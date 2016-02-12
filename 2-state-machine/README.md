@@ -1,9 +1,9 @@
 ## Introduction
 
 
-In the first Zetta tutorial, we set up a Zetta project, configured a Zetta server, and called its API.
+In the first Zetta tutorial, you set up a Zetta project, configured a Zetta server, and called its API.
 
-In this tutorial, we'll create a simple Zetta device that models a state machine. When you complete this tutorial, you will know how to:
+In this tutorial, you will create a simple Zetta device that models a state machine. When you complete this tutorial, you will know how to:
 
 * Create a Zetta device
 * Configure the Zetta server to discover the device
@@ -18,7 +18,7 @@ To complete this tutorial, you must have Node.js installed on your system. We as
 
 ## What is a Zetta device
 
-In Zetta, a device is software that models the behavior of a physical device. In this example, the device models a simple state machine. Through the Zetta APIs, you'll be able to switch the state on and off. In later tutorials, we'll apply the same patterns to allow Zetta to interact with physical devices. 
+In Zetta, a device is software that models the behavior of a physical device. In this example, the device models a simple state machine. Through the Zetta APIs, you'll be able to switch the state on and off. In later tutorials, you'll apply the same patterns to allow Zetta to interact with physical devices. 
 
 ## About the state machine
 
@@ -29,22 +29,40 @@ The following diagram illustrates how our state machine works. When the state is
 
 ## Create the Zetta project
 
-1. Create a project directory. You can name it anything you wish. In this tutorial, we'll call it `2-state-machine`. 
+1. Create a project directory. You can name it anything you wish. In this tutorial, call it `state-machine`. 
 
-2. cd to the directory.
+2. Change to the `state-machine` directory and do the following steps:
 
-3. Execute this command to create a new Node.js project: 
+    a. Execute this command to create a new Node.js project: 
 
-    `npm init`
+      `npm init`
 
-4. Hit return several times to accept all the defaults. This step creates a `package.json` file, which contains meta information about the project and its dependencies. 
+    b. Hit return several times to accept all the defaults. This step creates a `package.json` file, which contains meta information about the project and its dependencies. The `package.json` file should look like this:
 
-5. Install the `zetta` Node.js module. The `--save` option adds `zetta` to the `package.json` dependencies list. 
+    ```
+    {
+      "name": "state-machine",
+      "version": "1.0.0",
+      "description": "",
+      "main": "index.js",
+      "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+      },
+      "author": "",
+      "license": "ISC",
+      "dependencies": {
+        "zetta": "^0.33.0"
+      },
+      "devDependencies": {}
+    }
+    ```
 
-    `npm install zetta --save`
+    c. Install the `zetta` Node.js module. The `--save` option adds `zetta` to the `package.json` dependencies list. 
+
+      `npm install zetta --save`
 
 
-You now have a bare-bones Zetta project containing a `node_modules` directory and a `package.json` file. Next, we'll set up the Zetta server.
+You now have a bare-bones Zetta project containing a `node_modules` directory and a `package.json` file. Next, you'll set up the Zetta server.
 
 
 ## Set up the Zetta server
@@ -52,7 +70,7 @@ You now have a bare-bones Zetta project containing a `node_modules` directory an
 Let's set up the Zetta server and run it locally. 
 
 1. If it's still running, top the Zetta server with `Control-c`. 
-2. Be sure you're in the `2-state-machine` directory.
+2. Be sure you're in the `state-machine` directory.
 
 3. In a text editor, create a new file called `index.js`, and copy this code into it:
 
@@ -73,7 +91,7 @@ You now have a minimally configured Zetta server.
 
 ## Test the server
 
-In the `2-state-machine` directory, enter this command: 
+In the `state-machine` directory, enter this command: 
 
 `node index.js`
 
@@ -87,65 +105,62 @@ Zetta is running at http://127.0.0.1:1337
 
 ## Write the device code
 
-Now, we'll create a new JavaScript file for our device driver code.
+Now, create a new JavaScript file for our device driver code.
 
-1. If you're not there, cd to the `2-state-machine` directory. 
-2. Create a new file device.js:
+1. If you're not there, change to the `state-machine` directory. 
+2. In a text editor, create a new file called `index.js`, and edit it as follows:
 
-    `touch device.js`
-
-3. Open the file in an editor.
-4. Require these libraries:
+    a. Require these libraries:
 
     ```
-    var Device = require('zetta').Device;
-    var util = require('util');
+      var Device = require('zetta').Device;
+      var util = require('util');
     ```
 
-5. Create a generic JavaScript class and inherit from the Zetta Device class. This is a basic JavaScript object inheritance pattern that you will use consistently in Zetta projects:
+    b. Create a generic JavaScript class and inherit from the Zetta Device class. This is a basic JavaScript object inheritance pattern that you will use consistently in Zetta projects:
 
     ```
-    var StateMachineDevice = module.exports = function() {
-      Device.call(this);
-    }
+      var StateMachineDevice = module.exports = function() {
+        Device.call(this);
+      }
 
-    util.inherits(StateMachineDevice, Device);
+      util.inherits(StateMachineDevice, Device);
     ```
 
-6. Implement the `init()` function. This function is used by Zetta to configure and initialize the Device object. All Zetta devices must implement `init()`. 
+    c. Implement the `init()` function. This function is used by Zetta to configure and initialize the Device object. All Zetta devices must implement `init()`. 
 
     ```
-    StateMachineDevice.prototype.init = function(config) {
-      
-      // Set up the state machine 
-      config
-        .type('state_machine')
-        .state('off')
-        .name("State Machine Device");
+      StateMachineDevice.prototype.init = function(config) {
+        
+        // Set up the state machine 
+        config
+          .type('state_machine')
+          .state('off')
+          .name("State Machine Device");
 
-      config
-        // Define the transitions allowed by the state machine
-        .when('off', {allow: ['turn-on']})
-        .when('on', {allow: ['turn-off']})
+        config
+          // Define the transitions allowed by the state machine
+          .when('off', {allow: ['turn-on']})
+          .when('on', {allow: ['turn-off']})
 
-        // Map the transitions to JavaScript methods
-        .map('turn-off', this.turnOff)
-        .map('turn-on', this.turnOn)
-    }
+          // Map the transitions to JavaScript methods
+          .map('turn-off', this.turnOff)
+          .map('turn-on', this.turnOn)
+      }
     ```
 
-7. Implement the state machine transition methods. The pattern is straightforward asynchronous Node.js programming. The callback function is called when the requested transition is completed. 
+    d. Implement the state machine transition methods. The pattern is straightforward asynchronous Node.js programming. The callback function is called when the requested transition is completed. 
 
     ```
-    StateMachineDevice.prototype.turnOff = function(cb) {
-      this.state = 'off';
-      cb();
-    }
+      StateMachineDevice.prototype.turnOff = function(cb) {
+        this.state = 'off';
+        cb();
+      }
 
-    StateMachineDevice.prototype.turnOn = function(cb) {
-      this.state = 'on';
-      cb();
-    }
+      StateMachineDevice.prototype.turnOn = function(cb) {
+        this.state = 'on';
+        cb();
+      }
     ```
 
 8. Save the device file. 
@@ -153,15 +168,16 @@ Now, we'll create a new JavaScript file for our device driver code.
 
 ## Add the device to the server
 
-1. Open the server file, `index.js`. 
-2. Require the device module you just implemented:
+1. Open the server file, `index.js` and edit it as follows:
+
+    a. Require the device module you just implemented:
 
     ```
     var zetta = require('zetta');
     var StateMachineDevice = require('./device.js');
     ```
 
-3. Call the use method on the Zetta server, as follows. This statement is telling the Zetta server to search for this device and generate a set of APIs for it. 
+    b. Call the `use()` method on the Zetta server, as follows. This statement is telling the Zetta server to search for this device and generate a set of APIs for it. 
 
     ```
      zetta()
@@ -174,19 +190,20 @@ Now, we'll create a new JavaScript file for our device driver code.
 
 ## Test the device
 
-1. Start the Zetta server: 
+Start the Zetta server: 
 
     `node index.js`
 
-2. The server output should look like this. Notice the output has some new information that we didn't see before -- the State Machine device we added to the server was discovered by something called a "scout". We'll discuss scouts in detail in another topic. For now, just note that the device was discovered. This means that Zetta found the device and has generated APIs for it. 
+The server output should look like this:  
 
-    ```
-    node index.js
-    Jan-22-2016 15:34:18 [scout] Device (state_machine) 7cbf5759-4106-4985-83aa-e970fe13490d was discovered
-    Jan-22-2016 15:34:18 [server] Server (State Machine Server) State Machine Server listening on http://127.0.0.1:1337
-    Zetta is running at http://127.0.0.1:1337
-    ```
+```
+node index.js
+Jan-22-2016 15:34:18 [scout] Device (state_machine) 7cbf5759-4106-4985-83aa-e970fe13490d was discovered
+Jan-22-2016 15:34:18 [server] Server (State Machine Server) State Machine Server listening on http://127.0.0.1:1337
+Zetta is running at http://127.0.0.1:1337
+```
 
+Notice the output has some new information that you didn't see before -- the State Machine device you added to the server was discovered by something called a "scout". You will explore scouts in detail in another topic. For now, just note that the device was discovered. This means that Zetta found the device and has generated APIs for it.
 
 ## Call the device API
 
@@ -198,7 +215,7 @@ Now, we'll create a new JavaScript file for our device driver code.
 
     `curl http://127.0.0.1:1337/servers/State%20Machine%20Server`
 
-3. Notice that the `entities` element lists a device. This is the state machine device we added to the server. The current state (reflected in the `properties` attribute of the JSON response) is `off`.
+3. Notice that the `entities` element lists a device. This is the state machine device you added to the server. The current state (reflected in the `properties` attribute of the JSON response) is `off`.
 
 ```json
 {
@@ -288,13 +305,13 @@ Now, we'll create a new JavaScript file for our device driver code.
 
 ##Query the device capabilities
 
-Now, let's follow the URL to the device itself. It looks something like this:
+Now, you can follow the URL to the device itself. It looks something like this:
 
 ```
  "http://127.0.0.1:1337/servers/State%20Machine%20Server/devices/7cbf5759-4106-4985-83aa-e970fe13490d"
 ```
 
-Here we can discover what actions the actual device is capable of performing. This device has a "transition" action that lets you change its state. Because the current state, as we saw previously, is `off`, the available action is `turn-on`.
+Here you can discover what actions the actual device is capable of performing. This device has a "transition" action that lets you change its state. Because the current state, as you saw previously, is `off`, the available action is `turn-on`.
 
 ```json
 {
@@ -370,14 +387,13 @@ Here we can discover what actions the actual device is capable of performing. Th
 
 ## Change the device state
 
-The transition action includes an `href` link. The link is an HTTP POST command that you can use to change the machine's state. To "turn the machine on", you simply form the correct POST request. 
+The transition action includes an `href` link. The link is an HTTP POST command that you can use to switch the machine's state. To "turn the switch on", you simply form the correct POST request. 
 
 The POST request to turn on the light looks something like this (you'll need to use the link provided in your own response, which has the correct device ID):
 
 `curl -i -X POST http://127.0.0.1:1337/servers/State%20Machine%20Server/devices/7cbf5759-4106-4985-83aa-e970fe13490d -d 'action=turn-on'`
 
-
-In the HTTP response, you can see that the state has been changed from `off` to `on`. Furthermore, the available action is changed to `turn-off`. To turn the light off again, follow the same pattern by POSTing to the transition URL.
+The following response is returned:
 
 ```json
 {
@@ -451,6 +467,8 @@ In the HTTP response, you can see that the state has been changed from `off` to 
 }
 ```
 
+In the HTTP response, you can see that the state has been switched from `off` to `on`. Furthermore, the available action is changed to `turn-off`. To turn the light off again, change the action parameter to `action=turn-off` and follow the same pattern by POSTing to the transition URL.
+
 You'll see a message in the server's terminal output indicating the transition changes:
 
 ```
@@ -461,13 +479,13 @@ Jan-22-2016 15:58:52 [device] state_machine transition turn-on
 
 ## Summary
 
-In this topic, we added a device driver to a Zetta server instance, and then we traced the links provided in the server's JSON response to transition the state of the device. 
+In this topic, you added a device driver to a Zetta server instance and then traced the links provided in the server's JSON response to transition the state of the device. 
 
 The cool thing about Zetta APIs is that each response contains everything an app developer needs to navigate the API, discover its actions, and execute them. 
 
 Another thing to remember is that this pattern is central to Zetta development. You write the device driver for whatever device you want to access over HTTP, and Zetta provides a fully functional REST API for that device!
 
-In the next part of the tutorial, we'll create a scout. Scouts constantly run in the background and alert the Zetta server whenever a device comes on line. 
+In the next tutorial, you will create a scout. Scouts constantly run in the background and alert the Zetta server whenever devices come on line. 
 
 
 
